@@ -1,0 +1,29 @@
+prompt = input("Enter the word: " )
+
+def main(prompt):
+     
+    hashvalues = []
+    for word in prompt:
+       hashed = hash_function(word)
+       hashvalues.append(hashed)
+
+    print(hashvalues)
+
+    #List + Everything 
+    total = sum(hashvalues)
+    print("The total:" ,total)
+    HashOutput = pow(total, 1 ,100)
+    print ("Output", HashOutput)
+
+
+def hash_function(key):  
+    return sum(  
+        index * ord(character)  
+        for index, character in enumerate(repr(key), start = 1)  
+    )  
+     
+
+
+
+
+main(prompt)

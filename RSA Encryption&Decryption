@@ -1,38 +1,37 @@
 
-keystream = input("Enter Keystream: ")
 
-def main(keystream):
+keystream = input("Enter Keystream: ") #Primary input for the key
 
-    keystream = keystream.lower() 
-    output = []
-    for charachter in keystream:
-       number = ord(charachter) - 96 
+def main(keystream): #Main Function 
+    keystream = keystream.lower() #Converting keystream from string into its numeric value
+    output = [] #main tuple list 
+    for charachter in keystream: 
+       number = ord(charachter) #Convert to ASCII 
        output.append(number)
     print(output)
     
-
-    p = 23
-    q = 29 
-    n = p * q 
-    phi = (p-1)*(q-1)
-    d = 85 
-    e = 29 
+    p = 23 #Prime Number 1
+    q = 29 #Prime Number 2 
+    n = p * q #Public Key
+    phi = (p-1)*(q-1) #Phi
+    d = 85 #Private Key
+    e = 29  #Public Key
 
     
-    encryptionvalues = []
+    encryptionvalues = [] #Encryption loop using public key 
     for x in output:
         encryption = pow(x,e,n)
         encryptionvalues.append(encryption)
 
-    decryptionvalues = []
+    decryptionvalues = [] #Decryption loop using private key
     for x in encryptionvalues:
         decryption = pow(x,d,n)
         decryptionvalues.append(decryption)
 
 
     
-    print ("Encryption Values: ", encryptionvalues) 
-    print ("Decryption Values: ", decryptionvalues)
+    print ("Encryption Value: ", encryptionvalues) 
+    print ("Decrypted Value: ", decryptionvalues)
 
 
         

@@ -1,0 +1,54 @@
+# Function to find gcd of two numbers
+def gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
+
+# Function to find the multiplicative inverse of a modulo m
+def mod_inverse(a, m):
+    r1 = m
+    r2 = a
+    s1 = 0
+    s2 = 1
+    while r2 != 0:
+        q = r1 // r2
+        r = r1 % r2
+        r1 = r2
+        r2 = r
+        s = s1 - q * s2
+        s1 = s2
+        s2 = s
+    if s1 < 0:
+        s1 = s1 % m
+    return s1
+
+# Enter two large prime numbers p and q
+p = 823
+q = 953
+n = p * q
+phi_n = (p-1) * (q-1)
+
+# Generate a list of possible encryption keys
+e_list = [e for e in range(2, phi_n) if gcd(phi_n, e) == 1]
+
+# Select an encryption key from the above list
+e = 313
+
+# Obtain the decryption key using the extended Euclidean algorithm
+d = mod_inverse(e, phi_n)
+
+# Enter the message to be sent
+M = 19070
+
+# Generate the signature using the private key d
+S = pow(M, d, n)
+
+# Verify the signature using the public key e
+M1 = pow(S, e, n)
+
+# If M = M1, then the message is authentic
+if M == M1:
+    print("The message is authentic")
+else:
+    print("The message is not authentic")

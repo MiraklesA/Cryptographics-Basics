@@ -1,0 +1,42 @@
+
+keystream = input("Enter Keystream: ")
+
+def main(keystream):
+
+    keystream = keystream.lower() 
+    output = []
+    for charachter in keystream:
+       number = ord(charachter) - 96 
+       output.append(number)
+    print(output)
+    
+
+    p = 23
+    q = 29 
+    n = p * q 
+    phi = (p-1)*(q-1)
+    d = 85 
+    e = 29 
+
+    
+    encryptionvalues = []
+    for x in output:
+        encryption = pow(x,e,n)
+        encryptionvalues.append(encryption)
+
+    decryptionvalues = []
+    for x in encryptionvalues:
+        decryption = pow(x,d,n)
+        decryptionvalues.append(decryption)
+
+
+    
+    print ("Encryption Values: ", encryptionvalues) 
+    print ("Decryption Values: ", decryptionvalues)
+
+
+        
+
+   
+
+main(keystream)
